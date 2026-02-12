@@ -46,13 +46,13 @@ graph TD
     E -->|Augmented Prompt| F["🤖 LLM Generation<br/>Google Gemini Pro"]
     F -->|Generate Response| G["✅ Grounded Answer<br/>With Context References"]
 
-    style A fill:#e1f5ff
-    style B fill:#fff3e0
-    style C fill:#f3e5f5
-    style D fill:#e8f5e9
-    style E fill:#fff9c4
-    style F fill:#fce4ec
-    style G fill:#c8e6c9
+    style A fill:#01579b,stroke:#004d7a,stroke-width:2px,color:#fff
+    style B fill:#e65100,stroke:#bf360c,stroke-width:2px,color:#fff
+    style C fill:#4a148c,stroke:#38006b,stroke-width:2px,color:#fff
+    style D fill:#1b5e20,stroke:#003300,stroke-width:2px,color:#fff
+    style E fill:#f57f17,stroke:#ff6f00,stroke-width:2px,color:#000
+    style F fill:#880e4f,stroke:#430a0e,stroke-width:2px,color:#fff
+    style G fill:#004d40,stroke:#000000,stroke-width:2px,color:#fff
 ```
 
 ### RAG Workflow
