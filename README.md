@@ -34,63 +34,48 @@ This system enables intelligent product search and recommendations by:
 
 ## 🏗️ Architecture
 
-┌─────────────────────────────────────────────────────────────────┐
-│ USER QUERY │
-│ "What's the best laptop for gaming?" │
-└─────────────────────────────────────────────────────────────────┘
-│
-▼
-┌─────────────────────────────────────────────────────────────────┐
-│ RETRIEVAL LAYER │
-│ ┌─────────────┐ ┌──────────────┐ ┌───────────────────┐ │
-│ │ Query │───▶│ Vector │───▶│ ChromaDB │ │
-│ │ Embedding │ │ Search │ │ (Top-K Results) │ │
-│ └─────────────┘ └──────────────┘ └───────────────────┘ │
-│ │ │ │
-│ └──────── Google Embeddings ◀──────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
-│
-▼
-┌─────────────────────────────────────────────────────────────────┐
-│ AUGMENTATION LAYER │
-│ ┌─────────────────────────────────────────────────────────┐ │
-│ │ PROMPT = User Query + Retrieved Context Documents │ │
-│ └─────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
-│
-▼
-┌─────────────────────────────────────────────────────────────────┐
-│ GENERATION LAYER │
-│ ┌─────────────────────────────────────────────────────────┐ │
-│ │ Google Gemini Pro LLM │ │
-│ │ (Generates grounded response) │ │
-│ └─────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
-│
-▼
-┌─────────────────────────────────────────────────────────────────┐
-│ RESPONSE │
-│ "Based on our catalog, the ASUS ROG Zephyrus G14 at $1,599 │
-│ is excellent for gaming with RTX 4060 and 165Hz display..." │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    A["🔍 User Query<br/>What's the best laptop for gaming?"] -->|Convert to Vector| B["🧮 Query Embedding<br/>Google Embeddings API"]
+    B -->|Search| C["🗄️ Vector Database<br/>ChromaDB"]
+    C -->|Retrieve Top-K Docs| D["📄 Retrieved Context<br/>Product Documents"]
+
+    A -->|Original Query| E["🔗 Augmentation Layer"]
+    D -->|Context| E
+
+    E -->|Augmented Prompt| F["🤖 LLM Generation<br/>Google Gemini Pro"]
+    F -->|Generate Response| G["✅ Grounded Answer<br/>With Context References"]
+
+    style A fill:#e1f5ff
+    style B fill:#fff3e0
+    style C fill:#f3e5f5
+    style D fill:#e8f5e9
+    style E fill:#fff9c4
+    style F fill:#fce4ec
+    style G fill:#c8e6c9
+```
 
 ### RAG Workflow
 
-1. **Document Ingestion**
-   - Upload product documents via API
-   - Documents are chunked into smaller segments
-   - Each chunk is converted to vector embeddings
-   - Embeddings are stored in ChromaDB
+The system operates in three distinct phases:
 
-2. **Query Processing**
-   - User query is converted to embedding
-   - Similarity search finds top-K relevant chunks
-   - Retrieved context is combined with query
+#### 1. **Retrieval Phase**
 
-3. **Response Generation**
-   - Augmented prompt sent to Gemini Pro
-   - LLM generates response grounded in context
-   - Response returned with source references
+- User query is converted to vector embeddings using Google Embeddings API
+- Semantic similarity search is performed against ChromaDB
+- Top-K most relevant product documents are retrieved
+
+#### 2. **Augmentation Phase**
+
+- Retrieved context documents are combined with the original user query
+- A comprehensive prompt is constructed: `User Query + Retrieved Context`
+- This augmented prompt grounds the LLM response in actual product data
+
+#### 3. **Generation Phase**
+
+- Augmented prompt is sent to Google Gemini Pro LLM
+- LLM generates accurate, context-grounded responses
+- Response includes relevant product details and source references
 
 ## 🚀 Setup Instructions
 
