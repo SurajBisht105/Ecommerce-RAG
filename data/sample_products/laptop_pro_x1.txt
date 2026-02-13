@@ -1,0 +1,43 @@
+Product: Laptop Pro X1
+Category: Laptops
+Brand: TechVision
+Price: $1,299.99
+
+Description:
+The Laptop Pro X1 is a premium ultrabook designed for professionals and power users. It features a stunning 14-inch 2K IPS display with 100% sRGB color accuracy, making it perfect for creative work, coding, and everyday productivity.
+
+Key Specifications:
+- Processor: Intel Core i7-13700H (14 cores, up to 5.0 GHz)
+- RAM: 16GB DDR5 5200MHz (upgradeable to 32GB)
+- Storage: 512GB NVMe PCIe Gen 4 SSD
+- Display: 14-inch 2560x1600 IPS, 120Hz refresh rate
+- Graphics: Intel Iris Xe integrated graphics
+- Battery: 72Wh, up to 18 hours of battery life
+- Weight: 1.4 kg (3.1 lbs)
+- Ports: 2x USB-C Thunderbolt 4, 1x USB-A 3.2, HDMI 2.1, 3.5mm audio jack
+- Operating System: Windows 11 Pro
+
+Features:
+- Backlit keyboard with 1.5mm key travel
+- Fingerprint reader for Windows Hello
+- 1080p IR webcam with privacy shutter
+- Wi-Fi 6E and Bluetooth 5.3
+- MIL-STD-810H durability certified
+- Rapid charge: 0 to 50% in 30 minutes
+
+Warranty: 2-year manufacturer warranty with accidental damage protection.
+
+Customer Reviews Summary:
+- Average Rating: 4.6/5 (based on 1,247 reviews)
+- Praised for: Excellent battery life, lightweight design, fast performance
+- Common concerns: No dedicated GPU for heavy gaming, limited to 32GB RAM max
+
+FAQ:
+Q: Can I use this laptop for video editing?
+A: Yes, the Laptop Pro X1 handles video editing well for 1080p and light 4K projects. For heavy 4K editing, consider a model with a dedicated GPU.
+
+Q: Is the RAM soldered or upgradeable?
+A: The base 16GB is soldered, but there is one open SO-DIMM slot allowing upgrade to 32GB total.
+
+Q: Does it support external monitors?
+A: Yes, it supports up to two external 4K displays via the Thunderbolt 4 ports.

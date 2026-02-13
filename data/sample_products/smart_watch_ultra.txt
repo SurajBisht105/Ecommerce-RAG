@@ -1,0 +1,53 @@
+Product: FitTrack Ultra Smartwatch
+Category: Wearables / Smartwatches
+Brand: FitTrack
+Price: $399.99
+
+Description:
+The FitTrack Ultra is a rugged yet elegant smartwatch built for fitness enthusiasts and outdoor adventurers. It features advanced health monitoring, GPS tracking, and a durable titanium case that can withstand extreme conditions.
+
+Key Specifications:
+- Display: 1.9-inch AMOLED, 502x410 resolution, 2000 nits brightness
+- Case Material: Grade 5 Titanium
+- Glass: Sapphire crystal
+- Water Resistance: 100m (suitable for swimming and snorkeling)
+- Battery Life: Up to 72 hours in smartwatch mode, 120 hours in power-saver GPS mode
+- Storage: 32GB onboard (for offline music and maps)
+- Connectivity: Bluetooth 5.3, Wi-Fi, NFC for contactless payments
+
+Health & Fitness Features:
+- Continuous heart rate monitoring with optical sensor
+- Blood oxygen (SpO2) measurement
+- ECG (electrocardiogram) capability
+- Skin temperature sensor
+- Sleep tracking with sleep score and stages
+- Stress monitoring and guided breathing exercises
+- 100+ sport modes including running, cycling, swimming, hiking, skiing
+- Dual-frequency GPS (L1 + L5) for precise outdoor tracking
+
+Smart Features:
+- Notifications for calls, messages, and apps
+- Voice assistant integration (Google Assistant, Siri)
+- Contactless payments via NFC
+- Offline Spotify and music playback
+- Turn-by-turn navigation with offline maps
+- Customizable watch faces (500+ options)
+
+Compatibility: Works with Android 8.0+ and iOS 15+
+
+Warranty: 2-year manufacturer warranty.
+
+Customer Reviews Summary:
+- Average Rating: 4.5/5 (based on 2,156 reviews)
+- Praised for: Accurate GPS tracking, durability, health features
+- Common concerns: Large size may not suit small wrists, premium price point
+
+FAQ:
+Q: Can I reply to messages from the watch?
+A: Yes, you can reply with preset responses, voice dictation, or a small on-screen keyboard.
+
+Q: Is it suitable for swimming?
+A: Yes, with 100m water resistance, it is suitable for swimming and snorkeling. Not recommended for scuba diving.
+
+Q: How accurate is the heart rate monitor?
+A: The optical heart rate sensor is clinically validated and provides accuracy comparable to chest strap monitors for most activities.

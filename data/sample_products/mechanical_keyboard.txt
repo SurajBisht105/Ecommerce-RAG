@@ -1,0 +1,64 @@
+Product: KeyMaster RGB Mechanical Keyboard
+Category: Computer Peripherals / Keyboards
+Brand: KeyMaster
+Price: $149.99
+
+Description:
+The KeyMaster RGB Mechanical Keyboard is a premium full-size keyboard designed for both gamers and typists. Featuring hot-swappable Cherry MX switches, full per-key RGB lighting, and a solid aluminum frame, this keyboard delivers exceptional typing feel and customization options.
+
+Key Specifications:
+- Switch Type: Cherry MX Brown (tactile, non-clicky) - Hot-swappable
+- Layout: Full-size 104 keys, ANSI layout
+- Keycaps: Double-shot PBT keycaps
+- Backlighting: Per-key RGB with 16.8 million colors
+- Connection: USB-C wired (detachable cable) + Bluetooth 5.0 + 2.4GHz wireless
+- Battery: 4000mAh rechargeable (up to 200 hours without RGB, 30 hours with RGB)
+- Frame Material: Anodized aluminum top plate
+- Anti-ghosting: Full N-key rollover
+- Polling Rate: 1000Hz (wired), 125Hz (wireless)
+- Dimensions: 440 x 135 x 40mm
+- Weight: 1.1 kg
+
+Features:
+- Hot-swappable sockets compatible with 3-pin and 5-pin mechanical switches
+- Onboard memory for 5 custom profiles
+- Dedicated media controls and volume roller
+- Magnetic wrist rest included
+- Software suite for macro programming and RGB customization
+- USB passthrough port
+- Sound dampening foam pre-installed
+- Windows and Mac compatible key layouts
+
+Available Switch Options:
+- Cherry MX Brown (tactile) - Default
+- Cherry MX Red (linear)
+- Cherry MX Blue (clicky)
+- Cherry MX Silent Red (silent linear)
+
+In The Box:
+- KeyMaster RGB Keyboard
+- Detachable USB-C to USB-A cable (1.8m braided)
+- Magnetic wrist rest
+- Keycap puller and switch puller
+- Extra keycaps for Mac layout
+- User manual
+
+Warranty: 2-year manufacturer warranty with 30-day money-back guarantee.
+
+Customer Reviews Summary:
+- Average Rating: 4.8/5 (based on 5,621 reviews)
+- Praised for: Build quality, hot-swap feature, typing experience, versatile connectivity
+- Common concerns: Full-size may be too large for some desks, software only available on Windows
+
+FAQ:
+Q: Can I use third-party switches?
+A: Yes, the hot-swap sockets support any Cherry MX compatible 3-pin or 5-pin switches from brands like Gateron, Kailh, and others.
+
+Q: Does it work with Mac?
+A: Yes, it includes Mac-specific keycaps and supports Mac key layouts. However, the configuration software is Windows-only.
+
+Q: How loud are the Cherry MX Brown switches?
+A: Cherry MX Brown switches produce a moderate sound level. They are quieter than Blue switches but louder than Silent Red switches. The pre-installed dampening foam helps reduce overall noise.
+
+Q: Can I replace the keycaps?
+A: Yes, the keyboard uses standard Cherry MX stems. Any MX-compatible keycap set will work.
