@@ -1,0 +1,28 @@
+# Core Framework
+fastapi
+uvicorn
+python-multipart
+
+# LangChain & RAG Components
+langchain
+langchain-google-genai
+langchain-community
+
+# Vector Database
+chromadb
+
+# Document Processing
+pypdf
+python-docx
+
+# Embeddings & AI
+google-generativeai
+
+# Utilities
+python-dotenv
+pydantic
+pydantic-settings
+
+# Testing
+pytest
+httpx
