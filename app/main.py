@@ -9,9 +9,11 @@ from app.api.routes import upload_router, query_router, health_router
 from app.config import get_settings
 from app import __version__
 
+# Load application settings from environment variables
 settings = get_settings()
 
-# Initialize FastAPI application
+# FastAPI() - Creates the main application instance
+# Configures metadata for auto-generated Swagger/ReDoc documentation
 app = FastAPI(
     title=settings.app_name,
     description="""
@@ -32,25 +34,29 @@ app = FastAPI(
     - **LLM**: Google Gemini Pro for response generation
     """,
     version=__version__,
-    docs_url="/docs",
-    redoc_url="/redoc"
+    docs_url="/docs",      # Swagger UI endpoint
+    redoc_url="/redoc"     # ReDoc documentation endpoint
 )
 
-# Configure CORS
+# add_middleware() - Adds CORS middleware to handle cross-origin requests
+# Allows frontend apps from different domains to access this API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=["*"],       # Allows all origins (restrict in production)
+    allow_credentials=True,    # Allows cookies/auth headers
+    allow_methods=["*"],       # Allows all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],       # Allows all request headers
 )
 
-# Include routers
-app.include_router(upload_router)
-app.include_router(query_router)
-app.include_router(health_router)
+# include_router() - Registers route modules with the main app
+# Organizes endpoints into separate files for better code structure
+app.include_router(upload_router)   # Document upload endpoints
+app.include_router(query_router)    # RAG query endpoints
+app.include_router(health_router)   # Health check endpoints
 
 
+# @app.get() - Decorator that creates a GET endpoint at root path "/"
+# async def allows non-blocking I/O operations
 @app.get("/", tags=["Root"])
 async def root():
     """Root endpoint with API information."""
@@ -63,8 +69,9 @@ async def root():
     }
 
 
-# Startup event
-@app.lifespan("startup")
+# @app.on_event("startup") - Runs once when application starts
+# Used for initializing DB connections, loading models, etc.
+@app.on_event("startup")
 async def startup_event():
     """Initialize components on application startup."""
     print(f"🚀 {settings.app_name} v{__version__} starting...")
@@ -73,8 +80,9 @@ async def startup_event():
     print(f"📖 Docs available at: /docs")
 
 
-# Shutdown event
-@app.lifespan("shutdown")
+# @app.on_event("shutdown") - Runs once when application stops
+# Used for cleanup tasks like closing DB connections, releasing resources
+@app.on_event("shutdown")
 async def shutdown_event():
     """Cleanup on application shutdown."""
     print("👋 Shutting down gracefully...")

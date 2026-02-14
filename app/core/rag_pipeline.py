@@ -17,7 +17,8 @@ from app.utils.helpers import format_context
 settings = get_settings()
 
 
-# Prompt template for e-commerce Q&A and recommendations
+# ECOMMERCE_PROMPT - Template string defining LLM behavior and response format
+# {context} and {question} are placeholders filled at runtime
 ECOMMERCE_PROMPT = """You are an intelligent e-commerce assistant helping customers find products and answer their questions.
 
 Use ONLY the following product information to answer the customer's question. If the information is not available in the context, politely say so and don't make up information.
@@ -37,133 +38,103 @@ INSTRUCTIONS:
 YOUR RESPONSE:"""
 
 
+# RAGPipeline - Core class implementing Retrieval-Augmented Generation
+# Combines vector search (retrieval) with LLM (generation) for grounded responses
 class RAGPipeline:
     """
-    Retrieval-Augmented Generation Pipeline for e-commerce.
-    
     RAG Architecture:
     1. RETRIEVAL: User query → Vector Search → Relevant Documents
     2. AUGMENTATION: Combine query + retrieved docs into prompt
     3. GENERATION: LLM generates response grounded in retrieved context
-    
-    Benefits:
-    - Responses are grounded in actual product data
-    - Reduces hallucination compared to pure LLM
-    - Can be updated by adding new documents without retraining
     """
     
+    # __init__() - Initializes all RAG components: vector store, LLM, and chain
+    # Sets up the complete pipeline ready for queries
     def __init__(self):
         """Initialize the RAG pipeline components."""
-        # Initialize vector store for retrieval
+        # VectorStoreService - Handles document storage and similarity search
         self.vector_store = VectorStoreService()
         
-        # Initialize the LLM for generation
+        # ChatGoogleGenerativeAI - LangChain wrapper for Gemini LLM
+        # temperature=0.3 reduces creativity for more factual responses
         self.llm = ChatGoogleGenerativeAI(
             model=settings.llm_model,
             google_api_key=settings.google_api_key,
-            temperature=0.3,  # Lower temperature for more factual responses
-            convert_system_message_to_human=True
+            temperature=0.3,
+            convert_system_message_to_human=True  # Gemini compatibility fix
         )
         
-        # Create prompt template
+        # PromptTemplate - Defines input variables and template structure
+        # Ensures consistent prompt formatting for every query
         self.prompt = PromptTemplate(
             input_variables=["context", "question"],
             template=ECOMMERCE_PROMPT
         )
         
-        # Create chain using LCEL (LangChain Expression Language)
+        # LCEL Chain - Pipes components together: prompt → LLM → parser
+        # "|" operator creates sequential processing pipeline
         self.chain = self.prompt | self.llm | StrOutputParser()
     
+    # retrieve() - Searches vector store for semantically similar documents
+    # Returns documents with similarity scores for transparency
     def retrieve(
         self,
         query: str,
         top_k: int = None
     ) -> List[Tuple[Document, float]]:
-        """
-        Retrieve relevant documents for a given query.
-        
-        Args:
-            query: User's question or search query
-            top_k: Number of documents to retrieve
-            
-        Returns:
-            List of (Document, score) tuples
-        """
+        # "or" pattern - Falls back to settings if top_k not specified
         return self.vector_store.similarity_search_with_scores(
             query=query,
             k=top_k or settings.top_k_results
         )
     
+    # generate() - Invokes LLM chain with context and query
+    # Returns cleaned response string from the model
     def generate(
         self,
         query: str,
         context: str
     ) -> str:
-        """
-        Generate a response using the LLM with retrieved context.
-        
-        Args:
-            query: User's question
-            context: Retrieved document context
-            
-        Returns:
-            Generated response string
-        """
+        # chain.invoke() - Executes the LCEL pipeline with input dict
+        # Fills template placeholders and gets LLM response
         response = self.chain.invoke({
             "context": context,
             "question": query
         })
         return response.strip()
     
+    # query() - Main entry point executing complete RAG pipeline
+    # Orchestrates retrieve → augment → generate flow
     def query(
         self,
         query: str,
         top_k: int = None
     ) -> Tuple[str, List[Tuple[Document, float]]]:
-        """
-        Execute the complete RAG pipeline.
-        
-        Args:
-            query: User's question or request
-            top_k: Number of documents to retrieve
-            
-        Returns:
-            Tuple of (generated_answer, retrieved_documents_with_scores)
-        """
-        # Step 1: RETRIEVE - Get relevant documents
+        # Step 1: RETRIEVE - Vector similarity search for relevant docs
         retrieved_docs = self.retrieve(query, top_k)
         
-        # Step 2: AUGMENT - Build context from retrieved documents
+        # Step 2: AUGMENT - Build context string from retrieved documents
+        # List comprehension extracts docs, discarding scores
         if retrieved_docs:
             documents = [doc for doc, _ in retrieved_docs]
-            context = format_context(documents)
+            context = format_context(documents)  # Helper formats docs as string
         else:
             context = "No relevant product information found in the database."
         
-        # Step 3: GENERATE - Create response using LLM
+        # Step 3: GENERATE - LLM creates response grounded in context
         answer = self.generate(query, context)
         
+        # Returns both answer and source docs for transparency/citations
         return answer, retrieved_docs
     
+    # add_documents() - Indexes new documents into vector store
+    # Expands RAG knowledge base without model retraining
     def add_documents(self, documents: List[Document]) -> int:
-        """
-        Add new documents to the RAG system's knowledge base.
-        
-        Args:
-            documents: List of Document objects to add
-            
-        Returns:
-            Number of documents added
-        """
         return self.vector_store.add_documents(documents)
     
+    # get_stats() - Returns system metrics for monitoring/health checks
+    # Useful for debugging and admin dashboards
     def get_stats(self) -> dict:
-        """
-        Get statistics about the RAG system.
-        
-        Returns:
-            Dictionary with system statistics
-        """
         return {
             "documents_indexed": self.vector_store.get_document_count(),
             "llm_model": settings.llm_model,
